@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./body.css">
+    <title>Registration Form</title>
+    <script type="text/javascript">
+        function validate() {
+            if (document.myForm.Name.value == "") {
+                alert("Please provide your name");
+                document.myForm.Name.focus();
+                return false;
+            }
+
+            var gen = document.getElementsByName('gender');
+            var genValue = false;
+            for (var i = 0; i < gen.length; i++) {
+                if (gen[i].checked) {
+                    genValue = true;
+                    break;
+                }
+            }
+            if (!genValue) {
+                alert("Gender not selected");
+                return false;
+            }
+
+            if (document.myForm.Email.value == "") {
+                alert("Please provide your Email ID");
+                document.myForm.Email.focus();
+                return false;
+            }
+
+            if (document.myForm.phno.value == "" || document.myForm.phno.value.length != 10) {
+                alert("Please provide a valid phone number (10 digits)");
+                document.myForm.phno.focus();
+                return false;
+            }
+
+            if (document.myForm.Zip.value == "" || document.myForm.Zip.value.length != 6) {
+                alert("Please provide a valid zip code (6 digits)");
+                document.myForm.Zip.focus();
+                return false;
+            }
+
+            if (document.myForm.Country.value == "-1") {
+                alert("Please select your Country");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateEmail() {
+            var emailID = document.myForm.Email.value;
+            var atpos = emailID.indexOf("@");
+            var dotpos = emailID.lastIndexOf(".");
+            if (atpos < 1 || (dotpos - atpos < 2)) {
+                alert("Please enter a correct Email ID");
+                document.myForm.Email.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validate();">
+        <table align="center" cellspacing="2" cellpadding="2" border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="Name" /></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" value="male" /> Male
+                    <input type="radio" name="gender" value="female" /> Female
+                    <input type="radio" name="gender" value="others" /> Others
+                </td>
+            </tr>
+            <tr>
+                <td>Email ID</td>
+                <td><input type="text" name="Email" onchange="validateEmail();" /></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="text" name="phno" /></td>
+            </tr>
+            <tr>
+                <td>Zip Code</td>
+                <td><input type="text" name="Zip" /></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>
+                    <select name="Country">
+                        <option value="-1" selected>[choose yours]</option>
+                        <option value="IN">India</option>
+                        <option value="US">USA</option>
+                        <option value="LK">Sri Lanka</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Submit" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

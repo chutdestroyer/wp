@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./body.css">
+    <style>
+      .moveable {
+        position: absolute;
+      }
+    </style>
+    <script type="text/javascript">
+      var x = 2;
+      var y = 2;
+      var dest_x = 300;
+      var dest_y = 300;
+      var interval = 10;
+      function moveImage() {
+        if (x < dest_x) x = x + interval;
+        if (y < dest_y) y = y + interval;
+        document.getElementById("ufo").style.top = y + "px";
+        document.getElementById("ufo").style.left = x + "px";
+        if (x + interval < dest_x && y + interval < dest_y) {
+          window.setTimeout("moveImage()", 100);
+        }
+      }
+    </script>
+  </head>
+  <body onload="moveImage()">
+    <div id="ufo" class="moveable">
+      <img
+        src="https://images.unsplash.com/photo-1627454820516-dc767bcb4d3e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+        alt="please link to a valid image"width="400px"
+      />
+    </div>
+  </body>
+</html>
